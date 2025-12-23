@@ -148,4 +148,4 @@ default_floating_border pixel 2
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id picom
 exec --no-startup-id dunst
-exec --no-startup-id nitrogen --restore
+# exec --no-startup-id nitrogen --restore  # Uncomment if you want to use nitrogen for wallpapers

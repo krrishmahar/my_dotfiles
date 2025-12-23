@@ -60,11 +60,19 @@ backup_configs() {
 install_dotfiles() {
     print_info "Installing dotfiles..."
     
-    # Copy config files
-    cp -r .config/* "$HOME/.config/" 2>/dev/null || true
+    # Create .config directory if it doesn't exist
+    mkdir -p "$HOME/.config"
     
-    # Make scripts executable
-    chmod +x "$HOME/.config/polybar/launch.sh" 2>/dev/null || true
+    # Copy config files if source directory exists
+    if [ -d ".config" ] && [ "$(ls -A .config)" ]; then
+        cp -r .config/* "$HOME/.config/"
+    else
+        print_error "Source .config directory is empty or doesn't exist"
+        return 1
+    fi
+    
+    # Make all shell scripts executable
+    find "$HOME/.config" -name '*.sh' -type f -exec chmod +x {} \; 2>/dev/null || true
     
     print_info "Dotfiles installed successfully!"
 }

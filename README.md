@@ -41,6 +41,15 @@ Install the required packages on Arch Linux:
 sudo pacman -S i3-wm polybar kitty neovim rofi dunst picom
 ```
 
+**Optional packages:**
+```bash
+# Wallpaper manager (choose one)
+sudo pacman -S nitrogen feh
+
+# Icon themes
+sudo pacman -S papirus-icon-theme
+```
+
 ### Setup
 
 1. Clone this repository:
