@@ -72,7 +72,7 @@ install_dotfiles() {
     fi
     
     # Make all shell scripts executable
-    find "$HOME/.config" -name '*.sh' -type f -exec chmod +x {} \; 2>/dev/null || true
+    find "$HOME/.config" -name '*.sh' -type f -exec chmod +x {} + 2>/dev/null || true
     
     print_info "Dotfiles installed successfully!"
 }
