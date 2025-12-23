@@ -2,6 +2,8 @@
 
 A collection of configuration files (dotfiles) for my Arch Linux rice setup.
 
+**→ New to this repo? Check out the [Quick Start Guide](QUICKSTART.md)!**
+
 ## 📋 Contents
 
 This repository contains configuration files for:
