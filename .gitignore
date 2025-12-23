@@ -1,41 +1,27 @@
-# Compiled Lua sources
-luac.out
+# Backup files
+*.backup
+*.bak
+*~
+*.swp
+*.swo
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+# OS files
+.DS_Store
+Thumbs.db
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+# Editor files
+.vscode/
+.idea/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Neovim plugin directories (let users install their own)
+.config/nvim/plugged/
+.config/nvim/plugin/packer_compiled.lua
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+# Personal/sensitive files
+*.log
+*.secret
+*.private
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+# Cache directories
+.cache/
+__pycache__/
