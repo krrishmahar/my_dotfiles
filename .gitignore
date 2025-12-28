@@ -47,8 +47,9 @@ mozilla
 dconf
 mozilla
 nvim 
-nvm 
+nvm/*
 pavucontrol.ini
 .local/share
 .local/kitty.app
 .local/state
+nvm
