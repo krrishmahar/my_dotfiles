@@ -1,16 +1,111 @@
 {
-    "layer": "top",
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["battery", "clock"],
-    "sway/window": {
-        "max-length": 50
-    },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
-    }
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "hyprland/window"
+  ],
+
+  "modules-right": [
+    "memory",
+    "disk",
+    "network",
+    "bluetooth",
+    "backlight",
+    "pulseaudio",
+    "clock",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+  "disable-scroll": false,
+  "on-scroll-up": "hyprctl dispatch workspace e+1",
+  "on-scroll-down": "hyprctl dispatch workspace e-1",
+  "on-click":"activate",
+  "all-outputs": true,
+  "format": "{icon}",
+  "format-icons": {
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5",
+    "urgent": "!",
+    "default": ""
+  }
+},
+
+"hyprland/window": {
+  "format": "{}",
+  "max-length": 40,
+  "separate-outputs": true
+},
+
+"bluetooth": {
+  "format": " {status}",
+  "format-connected": " {device_alias}",
+  "tooltip": true
+},
+
+"backlight": {
+  "format": "☀ {percent}%",
+  "tooltip": false
+},
+
+"pulseaudio": {
+  "format": "🔊 {volume}%",
+  "format-muted": "🔇",
+  "scroll-step": 5,
+  "on-click": "pavucontrol"
+},
+"clock": {
+    "format": "{:L%H:%M}",
+    "format-alt": "{:L%A %d %B}",
+    "tooltip": false
+  },
+  "disk": {
+    "interval": 30,
+    "format": "󱛟 {percentage_free}%",
+    "tooltip-format": "Used: {used}\nFree: {free}\nTotal: {total}",
+    "path": "/"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "󰍛 {usage}%",
+    "on-click": "kitty -e btop"
+  },
+  "memory": {
+    "format": " {used:0.1f}gb",
+    "interval": 2,
+    "on-click": "kitty -e btop"
+  },
+  "network": {
+    "interface": "wlan*",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon} {essid}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "kitty -e --class=impala impala"
+  }
 }

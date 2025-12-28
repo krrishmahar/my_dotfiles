@@ -1,0 +1,28 @@
+* {
+  all: unset;
+  font-family: JetBrainsMono Nerd Font;
+}
+
+.clip-item {
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(30,30,30,0.8);
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.clip-item:hover {
+  background: rgba(70,70,70,0.9);
+  transform: translateX(-5px);
+}
+
+.clip-text {
+  color: #eee;
+  font-size: 14px;
+}
+
+.clip-image {
+  min-width: 120px;
+  min-height: 80px;
+  border-radius: 8px;
+}
+

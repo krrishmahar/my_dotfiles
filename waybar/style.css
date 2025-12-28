@@ -1,0 +1,70 @@
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 12px;
+  border: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  background: rgba(10, 12, 16, 0.88);
+  margin: 6px 10px;
+  border-radius: 14px;
+  transition: background 0.3s ease;
+}
+#workspaces {
+  padding: 0 6px;
+}
+
+#workspaces button {
+  padding: 4px 10px;
+  margin: 4px 2px;
+  color: #7f849c;
+  background: transparent;
+  border-radius: 8px;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    padding 0.25s ease;
+}
+
+#workspaces button.active {
+  color: #ffffff;
+  background: rgba(140, 15, 31, 0.35); /* chainsaw red */
+  padding: 4px 14px;
+}
+
+#workspaces button:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+#window {
+  padding: 0 14px;
+  color: #cdd6f4;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+#window.empty {
+  opacity: 0.4;
+}
+#pulseaudio,
+#backlight,
+#bluetooth,
+#clock,
+#tray {
+  padding: 0 10px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+#pulseaudio:hover,
+#backlight:hover,
+#bluetooth:hover,
+#clock:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+#pulseaudio {
+  transition: background-color 0.3s ease;
+}
+

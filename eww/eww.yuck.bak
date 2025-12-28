@@ -1,0 +1,18 @@
+(defwidget control_panel []
+  (box :orientation "vertical"
+       :class "panel"
+       (scale
+         :min 0 :max 100
+         :onchange "pamixer --set-volume {}"
+         :value {"get-volume"})
+       (scale
+         :min 0 :max 100
+         :onchange "brightnessctl set {}%"
+         :value {"get-brightness"})))
+(defwidget greeter [?text name]
+  (box :orientation "horizontal"
+       :halign "center"
+    text
+    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet")))
+

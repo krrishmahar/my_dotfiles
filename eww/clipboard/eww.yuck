@@ -1,0 +1,35 @@
+(defwidget clipboard_item [id kind preview]
+  (button
+    :class "clip-item"
+    :onclick "bash ~/.config/eww/scripts/clipboard-pick.sh ${id}"
+    (box
+      :orientation "horizontal"
+      :spacing 10
+      (if (= kind "image")
+        (image :path (str "/tmp/clip-" id ".png") :class "clip-image")
+        (label :text preview :class "clip-text")))))
+
+(defwidget clipboard []
+  (box
+    :orientation "vertical"
+    :spacing 8
+    (for
+      (item (command "~/.config/eww/scripts/clipboard-list.sh"))
+      (clipboard_item
+        :id (nth 0 (split item "|"))
+        :kind (nth 1 (split item "|"))
+        :preview (or (nth 2 (split item "|")) "")))))
+
+(defwindow clipboard
+  :monitor 0
+  :geometry (geometry
+    :x "100%"
+    :y "50%"
+    :width "420px"
+    :height "600px"
+    :anchor "right center")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  (clipboard))
+

@@ -1,0 +1,102 @@
+(defpoll clipboard_content :interval "2s"  "~/.config/eww/scripts/clipboard-list.sh")
+;; Add :initial "0" to both polls
+(defpoll volume :interval "1s" 
+                :initial "0"  
+                "pamixer --get-volume")
+
+(defpoll brightness :interval "1s" 
+                    :initial "0" 
+                    "brightnessctl -m | cut -d, -f4 | tr -d %")
+
+(defwidget greeter [text name]
+  (box :orientation "horizontal"
+       :halign "center"
+    text
+    (button
+      :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet")))
+
+(defwindow greeter_win
+  :monitor 0
+  :geometry (geometry
+    :x "0%"
+    :y "20px"
+    :width "90%"
+    :height "30px"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore false
+  (greeter
+    :text "Hi,"
+    :name "Krrish"))
+
+(defwindow controls
+  :monitor 0
+  :geometry (geometry
+    :x "100%"
+    :y "80%"
+    :width "300px"
+    :height "200px"
+    :anchor "right bottom")
+  :stacking "fg"
+  :wm-ignore true
+  (box
+    :orientation "vertical"
+    :spacing 12
+
+    (scale
+      :min 0
+      :max 100
+      :value volume
+      :onchange "pamixer --set-volume {}")
+
+    (scale
+      :min 0
+      :max 100
+      :value brightness
+      :onchange "brightnessctl set {}%")))
+
+; clipboard below
+(defwidget clipboard_item [id kind preview]
+  (button
+    :class "clip-item"
+    :onclick "bash ~/.config/eww/scripts/clipboard-pick.sh ${id}"
+    (box
+      :orientation "horizontal"
+      :spacing 10
+
+      ;; Image entry
+      (revealer
+        ; :reveal (== kind "image")
+        :reveal {kind == "image"}
+        (label :text "🖼 Image" :class "clip-text"))
+
+      ;; Text entry
+      (revealer
+        :reveal {kind == "text"}
+        (label :text preview :class "clip-text")))))
+
+(defwidget clipboard []
+  (box
+    :orientation "vertical"
+    :spacing 8
+    (for item in clipboard_content
+      (clipboard_item
+        :id {item.id}
+        :kind {item.kind}
+        :preview {item.preview}))))
+
+(defwindow clipboard
+  :monitor 0
+  :geometry (geometry
+    :x "100%"
+    :y "50%"
+    :width "420px"
+    :height "600px"
+    :anchor "right center")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  (clipboard))
+

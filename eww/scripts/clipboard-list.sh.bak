@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cliphist list | while read -r line; do
+  id="${line%% *}"
+
+  if cliphist decode <<<"$line" | file --mime-type - | grep -q image/; then
+    echo "$id|image|"
+  else
+    preview="$(cliphist decode <<<"$line" | head -n 1 | tr '\n' ' ')"
+    echo "$id|text|$preview"
+  fi
+done
+
+
