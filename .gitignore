@@ -49,3 +49,6 @@ mozilla
 nvim 
 nvm 
 pavucontrol.ini
+.local/share
+.local/kitty.app
+.local/state
