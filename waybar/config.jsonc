@@ -1,111 +1,191 @@
 {
-  "reload_style_on_change": true,
-  "layer": "top",
-  "position": "top",
-  "height": 32,
-  "margin-top": 6,
-  "margin-left": 10,
-  "margin-right": 10,
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 4, // Adds small space between modules
+    "reload_style_on_change": true,
 
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
-
-  "modules-center": [
-    "hyprland/window"
-  ],
-
-  "modules-right": [
-    "memory",
-    "disk",
-    "network",
-    "bluetooth",
-    "backlight",
-    "pulseaudio",
-    "clock",
-    "tray"
-  ],
-
-  "hyprland/workspaces": {
-  "disable-scroll": false,
-  "on-scroll-up": "hyprctl dispatch workspace e+1",
-  "on-scroll-down": "hyprctl dispatch workspace e-1",
-  "on-click":"activate",
-  "all-outputs": true,
-  "format": "{icon}",
-  "format-icons": {
-    "1": "1",
-    "2": "2",
-    "3": "3",
-    "4": "4",
-    "5": "5",
-    "urgent": "!",
-    "default": ""
-  }
-},
-
-"hyprland/window": {
-  "format": "{}",
-  "max-length": 40,
-  "separate-outputs": true
-},
-
-"bluetooth": {
-  "format": " {status}",
-  "format-connected": " {device_alias}",
-  "tooltip": true
-},
-
-"backlight": {
-  "format": "☀ {percent}%",
-  "tooltip": false
-},
-
-"pulseaudio": {
-  "format": "🔊 {volume}%",
-  "format-muted": "🔇",
-  "scroll-step": 5,
-  "on-click": "pavucontrol"
-},
-"clock": {
-    "format": "{:L%H:%M}",
-    "format-alt": "{:L%A %d %B}",
-    "tooltip": false
-  },
-  "disk": {
-    "interval": 30,
-    "format": "󱛟 {percentage_free}%",
-    "tooltip-format": "Used: {used}\nFree: {free}\nTotal: {total}",
-    "path": "/"
-  },
-  "cpu": {
-    "interval": 2,
-    "format": "󰍛 {usage}%",
-    "on-click": "kitty -e btop"
-  },
-  "memory": {
-    "format": " {used:0.1f}gb",
-    "interval": 2,
-    "on-click": "kitty -e btop"
-  },
-  "network": {
-    "interface": "wlan*",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
+    // --- Module Layout ---
+    "modules-left": [
+        "hyprland/workspaces"
     ],
-    "format": "{icon} {essid}",
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
-    "spacing": 1,
-    "on-click": "kitty -e --class=impala impala"
-  }
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "backlight",
+        "network",
+        "bluetooth",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+
+    // --- Module Configurations ---
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        },
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) - Google Chrome": "  $1",
+            "(.*) - Visual Studio Code": "󰨞  $1",
+            "(.*) - Kitty": "  $1"
+        }
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Presentation Mode: On",
+        "tooltip-format-deactivated": "Presentation Mode: Off"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "  Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": false
+    },
+
+    "network": {
+        "format": "{icon}",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰀂 Wired",
+        "format-disconnected": "󰤮 Disconnected",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": "  {essid} ({signalStrength}%)\nFrequency: {frequency}GHz\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "󰀂  {ifname}\nIP: {ipaddr}",
+        "on-click": "kitty -e --class=impala impala"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": " {usage}%",
+        "tooltip": true,
+        "on-click": "kitty -e btop"
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": " {percentage}%",
+        "tooltip-format": "Used: {used:0.1f}GB\nTotal: {total:0.1f}GB\nSwap: {swapUsed:0.1f}GB",
+        "on-click": "kitty -e btop"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󱛟 {percentage_free}%",
+        "path": "/",
+        "on-click": "kitty -e btop"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%A, %B %d, %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "wlogout --protocol layer-shell" 
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
 }

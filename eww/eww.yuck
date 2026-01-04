@@ -1,5 +1,6 @@
+;; --- Variables & Polls ---
 (defpoll clipboard_content :interval "2s"  "~/.config/eww/scripts/clipboard-list.sh")
-;; Add :initial "0" to both polls
+
 (defpoll volume :interval "1s" 
                 :initial "0"  
                 "pamixer --get-volume")
@@ -8,55 +9,60 @@
                     :initial "0" 
                     "brightnessctl -m | cut -d, -f4 | tr -d %")
 
-(defwidget greeter [text name]
-  (box :orientation "horizontal"
-       :halign "center"
-    text
-    (button
-      :onclick "notify-send 'Hello' 'Hello, ${name}'"
-      "Greet")))
+;; --- Reusable Widgets ---
 
-(defwindow greeter_win
-  :monitor 0
-  :geometry (geometry
-    :x "0%"
-    :y "20px"
-    :width "90%"
-    :height "30px"
-    :anchor "top center")
-  :stacking "fg"
-  :windowtype "dock"
-  :wm-ignore false
-  (greeter
-    :text "Hi,"
-    :name "Krrish"))
+;; A clean slider widget with an icon and label
+(defwidget slider_control [class value onchange icon label]
+  (box :orientation "h"
+       :class class
+       :space-evenly false
+       :spacing 10
+    (label :class "icon" :text icon)
+    (scale :min 0
+           :max 101
+           :active true
+           :value value
+           :onchange onchange
+           :hexpand true)
+    (label :class "value" :text "${label}%")))
+
+;; --- Windows ---
 
 (defwindow controls
   :monitor 0
   :geometry (geometry
-    :x "100%"
-    :y "80%"
-    :width "300px"
-    :height "200px"
+    :x "20px"
+    :y "20px"
+    :width "320px"
+    :height "140px"
     :anchor "right bottom")
   :stacking "fg"
   :wm-ignore true
-  (box
-    :orientation "vertical"
-    :spacing 12
+  (box :orientation "v"
+       :class "controls-container"
+       :space-evenly false
+       :spacing 15
 
-    (scale
-      :min 0
-      :max 100
+    ;; Volume Control
+    (slider_control 
+      :class "vol-slider"
       :value volume
+      :icon "󰕾"  ;; Nerd Font Icon
+      :label volume
       :onchange "pamixer --set-volume {}")
 
-    (scale
-      :min 0
-      :max 100
+    ;; Brightness Control
+    (slider_control 
+      :class "bright-slider"
       :value brightness
+      :icon "󰃠"  ;; Nerd Font Icon
+      :label brightness
       :onchange "brightnessctl set {}%")))
 
+;; --- Keep your existing Greeter & Clipboard windows below this line ---
+;; (Paste your existing greeter and clipboard code here)
+
+ 
 ; clipboard below
 (defwidget clipboard_item [id kind preview]
   (button

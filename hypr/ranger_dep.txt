@@ -1,0 +1,15 @@
+python
+python-pip
+python-pillow
+less
+file
+terminology
+librsvg
+ffmpeg
+mediainfo
+fontforge
+ffmpegthumbnailer
+elinks
+libcaca
+perl-image-exiftool
+ranger

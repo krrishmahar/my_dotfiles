@@ -1,0 +1,21 @@
+2025-12-29T14:09:11 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:09:11 exception: Failed to access /home/krrish/Music: No such file or directory
+2025-12-29T14:09:48 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:10:03 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:11:52 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:13:12 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:13:38 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:14:10 exception: Failed to open "/home/krrish/.config/mpd/ptate": No such file or directory
+2025-12-29T14:15:26 exception: Failed to commit /home/krrish/.config/mpd/ptate: File exists
+2025-12-29T14:15:26 exception: Failed to commit /home/krrish/.config/mpd/ptate: File exists
+2025-12-29T14:15:26 exception: Failed to commit /home/krrish/.config/mpd/ptate: File exists
+2025-12-29T14:46:57 exception: Failed to open "/home/krrish/.config/mpd/state": No such file or directory
+2025-12-29T14:48:08 client: [127.0.0.1:54116] command "close" during idle
+2025-12-29T15:02:02 client: [127.0.0.1:58890] command "close" during idle
+2025-12-29T15:20:31 update: added /Kenshi Yonezu - IRIS OUT.mp3
+2025-12-29T15:22:36 player: played "Kenshi Yonezu - IRIS OUT.mp3"
+2025-12-29T15:22:58 player: played "Kenshi Yonezu - IRIS OUT.mp3"
+2025-12-29T15:42:13 exception: Failed to commit /home/krrish/.config/mpd/state: File exists
+2025-12-29T15:46:03 player: played "Kenshi Yonezu - IRIS OUT.mp3"
+2025-12-29T15:48:38 player: played "Kenshi Yonezu - IRIS OUT.mp3"
+2025-12-29T15:51:11 player: played "Kenshi Yonezu - IRIS OUT.mp3"

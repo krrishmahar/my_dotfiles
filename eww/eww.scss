@@ -3,4 +3,68 @@
   border-radius: 12px;
   padding: 16px;
 }
+/* --- General Container --- */
+.controls-container {
+    background-color: #1e1e2e; /* Dark background */
+    border-radius: 16px;
+    padding: 20px;
+    border: 2px solid #313244;
+}
 
+/* --- Icons and Text --- */
+.icon {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 20px;
+    color: #cdd6f4;
+    padding-right: 5px;
+}
+
+.value {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    color: #a6adc8;
+    min-width: 40px; /* Keeps layout stable when numbers change */
+}
+
+/* --- Slider (Scale) Styling --- */
+scale trough {
+    all: unset;
+    background-color: #313244; /* Dark gray track */
+    border-radius: 12px;
+    min-height: 10px;
+    min-width: 100px;
+}
+
+scale highlight {
+    all: unset;
+    border-radius: 12px;
+    min-height: 10px;
+}
+
+/* Specific colors for Volume vs Brightness */
+.vol-slider scale highlight {
+    background-image: linear-gradient(to right, #89b4fa, #74c7ec);
+}
+
+.bright-slider scale highlight {
+    background-image: linear-gradient(to right, #f9e2af, #fab387);
+}
+
+/* The grabber knob */
+scale slider {
+    all: unset;
+    background-color: #ffffff;
+    border-radius: 50%;
+    min-height: 16px;
+    min-width: 16px;
+    margin-top: -3px; /* Centers the knob vertically */
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+/* Hover effects */
+scale:hover slider {
+    background-color: #cdd6f4;
+    min-height: 18px;
+    min-width: 18px;
+    margin-top: -4px;
+}
